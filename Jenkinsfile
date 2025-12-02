@@ -51,6 +51,15 @@ pipeline {
                 bat "if not exist %DIST_DIR%\\style.min.css (echo ERREUR: CSS non minifié & exit /b 1)"
                 bat "if not exist %DIST_DIR%\\script.min.js (echo ERREUR: JS non minifié & exit /b 1)"
 
+                // Vérifie que le HTML contient la balise <html>
+        bat """powershell -Command "Select-String -Path '%DIST_DIR%\\index.html' -Pattern '<html>' -Quiet; if (!$?) { exit 1 }" """
+
+        // Vérifie que le CSS minifié n'est pas vide
+        bat """powershell -Command "if ((Get-Content '%DIST_DIR%\\style.min.css').Length -eq 0) { exit 1 }" """
+
+        // Vérifie que le JS minifié n'est pas vide
+        bat """powershell -Command "if ((Get-Content '%DIST_DIR%\\script.min.js').Length -eq 0) { exit 1 }" """
+
                 echo "Tous les tests sont passés."
             }
         }
