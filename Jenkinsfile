@@ -54,7 +54,7 @@ stages {
            bat "if not exist %DIST_DIR%\\script.min.js (echo ERREUR: JS non minifié & exit /b 1)"
 
           // Vérifie que index.html contient <html>
-           bat """powershell -NoProfile -Command ^ "$content = Get-Content '%DIST_DIR%\\\\index.html' -Raw; ^if ($content -notmatch '<html>') { Write-Error 'HTML manquant <html>'; exit 1 }""""
+           bat '''powershell -NoProfile -Command ^ "$content = Get-Content '%DIST_DIR%\\\\index.html' -Raw; ^if ($content -notmatch '<html>') { Write-Error 'HTML manquant <html>'; exit 1 }"'''
 
 
            // Vérifie que le CSS minifié n'est pas vide
