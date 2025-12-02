@@ -53,7 +53,8 @@ stages {
            bat "if not exist %DIST_DIR%\\style.min.css (echo ERREUR: CSS non minifié & exit /b 1)"
            bat "if not exist %DIST_DIR%\\script.min.js (echo ERREUR: JS non minifié & exit /b 1)"
 
-    
+           bat '''powershell -Command "if (-not (Select-String -Path 'dist\\index.html' -Pattern '<html>' -Quiet -SimpleMatch -Encoding UTF8)) { Write-Error 'HTML manquant <html>'; exit 1 }"'''
+
 
            // Vérifie que le CSS minifié n'est pas vide
            bat '''powershell -Command "if ((Get-Content '%DIST_DIR%\\style.min.css').Length -eq 0) { Write-Error 'CSS minifié vide'; exit 1 }"'''
