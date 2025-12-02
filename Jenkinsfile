@@ -25,7 +25,7 @@ stages {
 
     stage('Build') {
         steps {
-            echo "🏗️ Build du projet + minification CSS/JS..."
+            echo "Build du projet et minification CSS/JS..."
 
             bat "if not exist %DIST_DIR% mkdir %DIST_DIR%"
             bat "xcopy /E /Y /I * %DIST_DIR%\\"
@@ -37,13 +37,13 @@ stages {
 
     stage('Tests') {
         steps {
-            echo "Exécution des tests..."
+            echo "Execution des tests..."
 
             bat "if not exist index.html (echo ERREUR: index.html manquant & exit /b 1)"
-            bat "if not exist dist/style.min.css (echo ERREUR: CSS non minifié & exit /b 1)"
-            bat "if not exist dist/script.min.js (echo ERREUR: JS non minifié & exit /b 1)"
+            bat "if not exist dist/style.min.css (echo ERREUR: CSS non minifie & exit /b 1)"
+            bat "if not exist dist/script.min.js (echo ERREUR: JS non minifie & exit /b 1)"
 
-            echo "Tous les tests sont passés."
+            echo "Tous les tests sont passes."
         }
     }
 
@@ -56,27 +56,26 @@ stages {
 
     stage('Deploy') {
         steps {
-            echo "Déploiement vers le dossier local..."
+            echo "Deploiement vers le dossier local..."
 
             bat "if not exist %DEPLOY_DIR% mkdir %DEPLOY_DIR%"
             bat "xcopy /E /Y /I %DIST_DIR% %DEPLOY_DIR%\\"
 
-            echo "Site déployé dans : %DEPLOY_DIR%"
+            echo "Site deploye dans : %DEPLOY_DIR%"
         }
     }
 }
 
 post {
     success {
-        echo "Pipeline terminé avec succès !"
+        echo "Pipeline termine avec succes !"
     }
     failure {
-        echo "Le pipeline a échoué."
+        echo "Le pipeline a echoue."
     }
 }
 
 
 }
-
 
 
