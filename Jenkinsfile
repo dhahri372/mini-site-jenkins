@@ -26,7 +26,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo "🏗️ Build du projet + minification CSS/JS..."
+                echo " Build du projet + minification CSS/JS..."
 
                 // Crée le dossier dist s'il n'existe pas
                 bat "if not exist %DIST_DIR% mkdir %DIST_DIR%"
