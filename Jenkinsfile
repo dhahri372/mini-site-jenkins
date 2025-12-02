@@ -1,7 +1,7 @@
 pipeline {
 agent any
 
-```
+
 environment {
     DIST_DIR   = "dist"
     DEPLOY_DIR = "C:\\mini-site-deploy"
@@ -94,7 +94,7 @@ post {
         echo "Le pipeline a échoué."
     }
 }
-```
+
 
 }
 
