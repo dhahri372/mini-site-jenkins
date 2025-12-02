@@ -1,5 +1,4 @@
 
-{"variant":"standard","id":"94821"}
 pipeline {
     agent any
 
